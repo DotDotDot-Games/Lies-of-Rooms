@@ -14,6 +14,14 @@ config/name="Lies of Rooms"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameDebugger="*uid://xodsxgpsskk2"
+ComponentManager="*uid://dhg8bupj1ups7"
+TransitionManager="*uid://cno4wejckrna6"
+ScenesManager="*uid://qqccb5c6n424"
+UIManager="*uid://dby5u3bvyp14j"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1

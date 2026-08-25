@@ -2,7 +2,7 @@ extends Area2D
 
 class_name InteractArea2D
 
-signal interacted(component: InteractComponent2D)
+signal interacted(node: Node)
 signal focused
 signal unfocused
 signal status_changed
@@ -17,8 +17,8 @@ signal status_changed
 		active = value
 		status_changed.emit()
 
-func interact(component: InteractComponent2D) -> void:
-	interacted.emit(component)
+func interact(node: Node) -> void:
+	interacted.emit(node)
 
 func focus() -> void:
 	GameDebugger.debug_log(

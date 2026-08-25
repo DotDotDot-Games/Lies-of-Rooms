@@ -14,10 +14,14 @@ public partial class RandomTextureMap : Node
 	[Export]
 	public ShapeTranslator translator = new();
 
+	[Export]
+	private int _repeatTries = 1;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		translator.RandomizeTranslation();
+		translator.InitializeTranslations();
+		translator.RandomizeTranslation(_repeatTries);
 
 		if (label is null)
 		{

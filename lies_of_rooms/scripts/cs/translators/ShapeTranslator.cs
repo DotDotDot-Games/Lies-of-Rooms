@@ -5,36 +5,26 @@ using System.Collections.Generic;
 using System.Linq;
 
 [GlobalClass]
-public partial class ShapeTranslator : Resource, ITranslator
+public partial class ShapeTranslator : GenericTranslator<Texture2D>
 {
 
     private const string _shapesPath = "res://assets/images/shapes";
-    private static readonly Texture2D[] _availableShapes = LoadShapes();
 
-    private readonly GDColl.Dictionary<string, Texture2D> _translation = new();
-
-    public GDColl.Dictionary<string, Texture2D> Translation => _translation;
-
-    public Texture2D GetShape(string letter)
+    public void RandomizeTranslation(int repeat = 1)
     {
-        return _translation[letter];
-    }
 
-    public string GetCharacter(Texture2D shape)
-    {
-        return _translation.FirstOrDefault(translation => translation.Value == shape).Key;
-    }
+        if (Translation is null)
+        {
+            Translation = new();
+        }
+        else
+        {
+            Translation.Clear();
+        }
 
-    public void SetCharacter(string letter, Texture2D texture)
-    {
-        _translation[letter] = texture;
-    }
+        List<Texture2D> shapes = new(AvailableTranslations);
 
-    public void RandomizeTranslation()
-    {
-        _translation.Clear();
-
-        List<Texture2D> shapes = new(_availableShapes);
+        shapes = Enumerable.Repeat(shapes, repeat).SelectMany(x => x).ToList();
 
         List<char> letters = Enumerable
             .Range('a', 26)
@@ -47,19 +37,19 @@ public partial class ShapeTranslator : Resource, ITranslator
 
             if (shapes.Count == 0)
             {
-                _translation[letter.ToString()] = null;
+                Translation[letter.ToString()] = null;
                 continue;
             }
 
             int idx = Random.Shared.Next(shapes.Count);
 
-            _translation[letter.ToString()] = shapes[idx];
+            Translation[letter.ToString()] = shapes[idx];
 
             shapes.RemoveAt(idx);
         }
     }
 
-    private static Texture2D[] LoadShapes()
+    protected override Texture2D[] LoadTranslations()
     {
         DirAccess directory = DirAccess.Open(_shapesPath);
 

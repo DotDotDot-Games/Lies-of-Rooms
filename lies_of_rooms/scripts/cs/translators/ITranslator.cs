@@ -1,28 +1,30 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using GDColl = Godot.Collections;
 
-public partial interface ITranslator
+
+public partial interface ITranslator<[MustBeVariant] T>
 {
     //public Texture2D[] Shapes { get; set; }
 
-    public GDColl.Dictionary<string, Texture2D> Translation { get; }
+    public T[] AvailableTranslations { get; }
 
-    public virtual Texture2D GetShape(string letter)
+    public GDColl.Dictionary<string, T> Translation { get; }
+
+    public virtual T GetTranslation(string letter)
     {
         return Translation[letter];
     }
 
-    public virtual string GetCharacter(Texture2D shape)
+    public virtual string GetCharacter(T shape)
     {
-        return Translation.FirstOrDefault(translation => translation.Value == shape).Key;
+        return Translation.FirstOrDefault(translation => translation.Value.Equals(shape)).Key;
     }
     
-    public virtual void SetCharacter(char letter, Texture2D texture)
+    public virtual void SetCharacter(char letter, T texture)
     {
         Translation[letter.ToString()] = texture;
     }
-
-
 }

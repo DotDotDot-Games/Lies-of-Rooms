@@ -8,12 +8,12 @@ public partial class TextureLabel : GridContainer
 {
 
 	[Signal]
-	public delegate void TextChangedEventHandler();
+	public delegate void TextChangedEventHandler(string newText);
 
 	[Signal]
 	public delegate void TextureMapChangedEventHandler();
 	
-	private string _text;
+	private string _text = "";
 
 	[Export]
 	public string Text
@@ -23,7 +23,7 @@ public partial class TextureLabel : GridContainer
 		{
 			_text = value;
 			CallDeferred(nameof(UpdateText));
-			EmitSignal(SignalName.TextChanged);
+			EmitSignal(SignalName.TextChanged, _text);
 		}
 	}
 

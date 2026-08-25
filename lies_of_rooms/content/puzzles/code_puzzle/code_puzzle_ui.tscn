@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://qqxrxxl8j84" path="res://content/puzzles/puzzle_ui.gd" id="1_q8st7"]
 [ext_resource type="Script" uid="uid://b1mc7kqfhfeuo" path="res://content/puzzles/code_puzzle/TextCode.cs" id="2_kxpcm"]
-[ext_resource type="Script" uid="uid://qf1krjd6swtt" path="res://scripts/cs/CopyLabelTextNode.cs" id="3_kxpcm"]
 [ext_resource type="Script" uid="uid://dwlqrsn56747p" path="res://scripts/cs/TextureLabel.cs" id="4_efuyl"]
 [ext_resource type="Script" uid="uid://c20bx07kjl6no" path="res://scripts/cs/RandomTextureMap.cs" id="5_3gul4"]
+[ext_resource type="Script" uid="uid://cxrgxe5pb1kqp" path="res://scripts/cs/PropertyCopier.cs" id="6_3gul4"]
 
 [node name="PuzzleUI" type="Control" unique_id=1045761332]
 layout_mode = 3
@@ -42,10 +42,6 @@ layout_mode = 2
 layout_mode = 2
 text = "a"
 
-[node name="SetFontCodeNode" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/Label" unique_id=1939608310 node_paths=PackedStringArray("target")]
-script = ExtResource("3_kxpcm")
-target = NodePath("..")
-
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1179962472]
 layout_mode = 2
 size_flags_vertical = 3
@@ -54,11 +50,19 @@ size_flags_vertical = 3
 layout_mode = 2
 columns = 4
 script = ExtResource("4_efuyl")
-Text = "abc"
 _fontSize = Vector2(32, 32)
 metadata/_custom_type_script = "uid://dwlqrsn56747p"
 
 [node name="RandomTextureMap" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1130480588 node_paths=PackedStringArray("label")]
 script = ExtResource("5_3gul4")
 label = NodePath("..")
+_repeatTries = 4
 metadata/_custom_type_script = "uid://c20bx07kjl6no"
+
+[node name="PropertyCopier" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1558061894 node_paths=PackedStringArray("MainNode", "Target")]
+script = ExtResource("6_3gul4")
+MainNode = NodePath("../../../../../ShapeCodeManager")
+nodeProp = &"Code"
+Target = NodePath("..")
+targetProp = &"Text"
+metadata/_custom_type_script = "uid://cxrgxe5pb1kqp"

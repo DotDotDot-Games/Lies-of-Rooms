@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://qqxrxxl8j84"
 
 [node name="ShapeCodeManager" type="Node" parent="." unique_id=1016330532]
 script = ExtResource("2_kxpcm")
+Code = "jabe"
 metadata/_custom_type_script = "uid://b1mc7kqfhfeuo"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=370092136]
@@ -50,13 +51,13 @@ size_flags_vertical = 3
 layout_mode = 2
 columns = 4
 script = ExtResource("4_efuyl")
+Text = "jabe"
 _fontSize = Vector2(32, 32)
 metadata/_custom_type_script = "uid://dwlqrsn56747p"
 
 [node name="RandomTextureMap" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1130480588 node_paths=PackedStringArray("label")]
 script = ExtResource("5_3gul4")
 label = NodePath("..")
-_repeatTries = 4
 metadata/_custom_type_script = "uid://c20bx07kjl6no"
 
 [node name="PropertyCopier" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1558061894 node_paths=PackedStringArray("MainNode", "Target")]

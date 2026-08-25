@@ -45,6 +45,11 @@ project/assembly_name="GDSharpProjects Template"
 
 enabled=PackedStringArray("res://addons/drag_and_drop/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/log/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://bgmhranoxbe6o"
+theme/custom_font="uid://c3862txwlnl20"
+
 [layer_names]
 
 2d_physics/layer_1="World"

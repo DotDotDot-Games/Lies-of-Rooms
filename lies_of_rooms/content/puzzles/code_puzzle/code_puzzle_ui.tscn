@@ -6,6 +6,17 @@
 [ext_resource type="Script" uid="uid://c20bx07kjl6no" path="res://scripts/cs/RandomTextureMap.cs" id="5_3gul4"]
 [ext_resource type="Script" uid="uid://cxrgxe5pb1kqp" path="res://scripts/cs/PropertyCopier.cs" id="6_3gul4"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mv66k"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.04622054, 0.04622054, 0.04622054, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [node name="PuzzleUI" type="Control" unique_id=1045761332]
 layout_mode = 3
 anchors_preset = 15
@@ -36,34 +47,59 @@ theme_override_constants/margin_bottom = 12
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=273959954]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=653894274]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=671445800]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1353613261]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=653894274]
 layout_mode = 2
-text = "a"
+theme_override_constants/separation = 6
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1179962472]
+[node name="TextureLabel" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=792959473]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureLabel" type="GridContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=792959473]
-layout_mode = 2
+size_flags_horizontal = 4
 columns = 4
 script = ExtResource("4_efuyl")
 Text = "jabe"
 _fontSize = Vector2(32, 32)
 metadata/_custom_type_script = "uid://dwlqrsn56747p"
 
-[node name="RandomTextureMap" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1130480588 node_paths=PackedStringArray("label")]
+[node name="RandomTextureMap" type="Node" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextureLabel" unique_id=1130480588 node_paths=PackedStringArray("label")]
 script = ExtResource("5_3gul4")
 label = NodePath("..")
 metadata/_custom_type_script = "uid://c20bx07kjl6no"
 
-[node name="PropertyCopier" type="Node" parent="MarginContainer/PanelContainer/VBoxContainer/TextureLabel" unique_id=1558061894 node_paths=PackedStringArray("MainNode", "Target")]
+[node name="PropertyCopier" type="Node" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextureLabel" unique_id=1558061894 node_paths=PackedStringArray("MainNode", "Target")]
 script = ExtResource("6_3gul4")
-MainNode = NodePath("../../../../../ShapeCodeManager")
+MainNode = NodePath("../../../../../../ShapeCodeManager")
 nodeProp = &"Code"
 Target = NodePath("..")
 targetProp = &"Text"
 metadata/_custom_type_script = "uid://cxrgxe5pb1kqp"
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1353613261]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_mv66k")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1179962472]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1825564771]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1819013721]
+layout_mode = 2
+text = "Close"
+
+[node name="Button2" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=533362169]
+layout_mode = 2
+text = "Verify"
